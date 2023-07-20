@@ -1,0 +1,33 @@
+{% block content %}
+    {% if simulation is defined %}
+        {% set forestGrid = simulation.forestGrid %}
+
+        <div>Grid width : {{ forestGrid.width }}</div>
+        <div>Grid height : {{ forestGrid.height }}</div>
+        <div>Total cells : {{ forestGrid.width * forestGrid.height }}</div>
+        <div>Initial cells on fire : {{ simulation.simulationParameters.initialFireCoordinates|length }}</div>
+        <div>Propagation probability : {{ simulation.simulationParameters.propagationProbability }}</div>
+        <div>Current time : {{ simulation.currentTime }}</div>
+        <div>Area burned : {{ forestGrid.percentageBurn }}%</div>
+        <div>Simulation status : {{ simulation.status }}</div>
+        <div>Cells on fire currently : {{ forestGrid.onFireCellsCoordinates|length }}</div>
+
+        <div id="forestGrid">
+            {% for w in range(1, forestGrid.width) %}
+                <div class="col">
+                    {% for h in range(1, forestGrid.height) %}
+                        {% set forestCell = forestGrid.forestCell(w, h) %}
+                        <div class="cell"
+                             data-x="{{ forestCell.x }}"
+                             data-y="{{ forestCell.y }}"
+                             data-state="{{ forestCell.state.stateStr }}"
+                        ></div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Waiting for WebSocket connection to establish...</p>
+    {% endif %}
+
+{% endblock %}

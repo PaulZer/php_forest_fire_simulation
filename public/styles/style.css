@@ -1,0 +1,27 @@
+#forestGrid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.cell {
+    background-color: darkgreen;
+    width: 15px;
+    height: 15px;
+    margin-top: 3px;
+    margin-right: 3px;
+}
+
+.cell[data-state="on_ashes"] {
+    background-color: dimgrey;
+}
+
+.cell[data-state="on_fire"] {
+     background-color: firebrick;
+ }
+
+.col {
+    display: table;
+}

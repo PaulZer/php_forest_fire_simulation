@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        {% block head %}
+            <meta charset="utf-8">
+            <link rel="stylesheet" href="/styles/style.css" />
+            <title>{% block title %}Simulation forest fire propagation{% endblock %}</title>
+        {% endblock %}
+    </head>
+    <body>
+        <div><button id="reset">Reset</button></div>
+
+        <section id="simulation">
+            {{ include('forestGrid.html.twig') }}
+        </section>
+        <footer id="footer">
+            {% block footer %}{% endblock %}
+        </footer>
+    {% block javascripts %}
+        <script src="scripts/simulation.js"></script>
+    {% endblock %}
+    </body>
+</html>
